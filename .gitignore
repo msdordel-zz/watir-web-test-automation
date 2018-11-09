@@ -1,0 +1,7 @@
+config/*.yml
+.*tags*
+config/users.yml
+foo/ignore.rb
+/screenshot
+.DS_Store
+
