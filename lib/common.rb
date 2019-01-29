@@ -20,6 +20,8 @@ include Benchmark
 require 'helper'
 
 def initialze_browser_session
+    
+    #for mobile apps
 
     if ENV['ART_MOBILE'] == 'true'
         # TODO: allow for easy UserAgent configuration 
@@ -28,11 +30,15 @@ def initialze_browser_session
         #driver = Webdriver::UserAgent.driver(:browser => :chrome, :agent => :iphone, :orientation => :portrait)
         browser = Watir::Browser.new driver
 
+    #for tablets
+        
     elsif ENV['ART_TABLET'] == 'true'
         Watir::always_locate = true
         driver = Webdriver::UserAgent.driver(:browser => :firefox, :agent => :iPad, :orientation => :landscape)
         #driver = Webdriver::UserAgent.driver(:browser => :chrome, :agent => :iPad, :orientation => :landscape)
         browser = Watir::Browser.new driver
+        
+    #for headless testing
 
     elsif ENV['HEADLESS'] == 'true'
         # Fireup the Browser & Maximize
@@ -40,6 +46,8 @@ def initialze_browser_session
         browser = Watir::Browser.new :firefox, headless: true;  
         #browser = Watir::Browser.new ENV['ART_URL'] || "chrome"
         #browser.driver.manage.window.maximize
+        
+    #for non-headless testing
 
     else
         # Fireup the Browser & Maximize
